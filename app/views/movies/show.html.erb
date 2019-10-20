@@ -4,12 +4,14 @@
   <tr>
     <th>Name</th>
     <th>Description</th>
+    <th>Category</th>
   </tr>
   </thead>
   <tbody>
     <tr>
       <td><%= @movie.title %></td>
       <td><%= @movie.description %></td>
+      <td><%= @movie.category.name %></td>
     </tr>
   </tbody>
 </table>

@@ -25,21 +25,10 @@
           <div class="field">
             <%= f.label :category_id %>:
           </div>
-          <%= f.collection_select :category_id, Category.all, :id, :category, include_blank: false %>
-        </div>
-      </div>
-
-      <div class="form-group">
-        <div class="control-label">
-          <div class="field">
-            <%= f.label :rating %>:
-          </div>
-
-          <%= f.text_field :rating %><br/>
+          <%= f.collection_select :category_id, Category.all, :id, :name, include_blank: false %>
         </div>
       </div>
       <%= f.submit %>
-
     <% end %>
 
     <%= link_to "New book", new_movie_path %>

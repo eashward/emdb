@@ -21,9 +21,8 @@ RSpec.describe MoviesController do
         category = create(:category)
         post :create, params: { movie: { title: Faker::Name.name,
                                          category_id: category.id,
-                                         description: Faker::Name.name,
-                                         rating: 4}}, as: :json
-        expect(response.content_type).to eq "application/json"
+                                         description: Faker::Name.name } }, as: :json
+        expect(response.content_type).to eq 'application/json'
       end
     end
   end

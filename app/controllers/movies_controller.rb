@@ -1,8 +1,9 @@
-class MoviesController < ApplicationController
+# frozen_string_literal: true
 
+class MoviesController < ApplicationController
   # @return [Object]
   def index
-    @movies = Movie.all
+    @movies = Movie.includes(:category)
   end
 
   def new
@@ -16,15 +17,21 @@ class MoviesController < ApplicationController
   def create
     @movie = Movie.new(whitelisted_params)
     respond_to do |format|
-      if @movie.save
-        format.html  { redirect_to(@movie,
-                                   :notice => 'Movie was successfully created.') }
-        format.json  { render :json => @movie,
-                              :status => :created, :location => @movie }
+      if @movie.save!
+        format.html do
+          redirect_to(@movie,
+                      notice: 'Movie was successfully created.')
+        end
+        format.json do
+          render json: @movie,
+                 status: :created, location: @movie
+        end
       else
-        format.html  { redirect_to :action => "new" }
-        format.json  { render :json => @movie.errors.to_json,
-                              :status => :unprocessable_entity }
+        format.html  { redirect_to action: 'new' }
+        format.json  do
+          render json: @movie.errors.to_json,
+                 status: :unprocessable_entity
+        end
       end
     end
   end
@@ -32,6 +39,4 @@ class MoviesController < ApplicationController
   def whitelisted_params
     params.require(:movie).permit(:title, :description, :rating, :category_id)
   end
-
-
 end
