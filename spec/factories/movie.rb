@@ -7,8 +7,4 @@ FactoryBot.define do
     rating { 2 }
     description { 'Desc' }
   end
-
-  factory :category, class: Category do
-    category { Faker::Name.name }
-  end
 end
