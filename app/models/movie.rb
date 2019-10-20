@@ -13,7 +13,8 @@ class Movie < ApplicationRecord
   def update_rating(vote)
     total_votes = ratings.count + 1 # presisted_votes + new_vote
     new_rating = (total_votes * rating + vote) / total_votes
-    new_rating = new_rating > MAX_RATING ? new_rating : MAX_RATING
+    byebug
+    new_rating = new_rating > MAX_RATING ? MAX_RATING : new_rating
     update!(rating: new_rating)
   end
 end
