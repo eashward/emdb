@@ -1,9 +1,19 @@
 <nav class="navbar navbar-expand-lg navbar-light fixed-top">
   <div class="container">
-<!--    <a class="navbar-brand" href="#">EMDB</a>-->
     <li class="navbar-brand">
       <%= link_to "EMDB", movies_path %>
     </li>
+    <div>
+      <%= form_tag(search_movie_path, :method => "get", class: "navbar navbar-light bg-light") do %>
+        <div class="input-group">
+          <%= search_field_tag :search, params[:search], placeholder: "Search", class: "form-control" %>&nbsp
+          <div class="input-group-btn">
+            <%= button_tag "Search", class: "btn btn-outline-success my-2 my-sm-0", :name => nil %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>

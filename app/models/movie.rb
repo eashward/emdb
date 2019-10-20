@@ -2,6 +2,7 @@
 
 class Movie < ApplicationRecord
   # Movie.rating avg rating of a movie
+  paginates_per 5
   MAX_RATING = 10
 
   has_many :ratings
@@ -10,11 +11,14 @@ class Movie < ApplicationRecord
 
   validates :title, presence: true
 
-  def update_rating(vote)
+  def self.update_rating(vote)
     total_votes = ratings.count + 1 # presisted_votes + new_vote
     new_rating = (total_votes * rating + vote) / total_votes
-    byebug
     new_rating = new_rating > MAX_RATING ? MAX_RATING : new_rating
     update!(rating: new_rating)
+  end
+
+  def self.search(str)
+    all.where('LOWER(title) LIKE ?', "%#{str.downcase}%")
   end
 end

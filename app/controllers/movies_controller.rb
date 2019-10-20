@@ -3,11 +3,19 @@
 class MoviesController < ApplicationController
   # @return [Object]
   def index
-    @movies = Movie.includes(:category)
+    @movies = Movie.includes(:category).order(:title).page params[:page]
   end
 
   def new
-    @movies = Movie.new
+    @movie = Movie.new
+  end
+
+  def search
+    search_param = params.permit(:search)
+    @movies = Movie.search(search_param[:search])
+    render
+  rescue NoMethodError
+    redirect_to(root_path, alert: "Empty field!")
   end
 
   def show
