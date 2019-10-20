@@ -11,9 +11,8 @@ class MoviesController < ApplicationController
   end
 
   def search
-    search_param = params.permit(:search)
-    @movies = Movie.search(search_param[:search])
-    render
+    search_param = params.permit(:search, :page)
+    @movies = Movie.search(search_param[:search], search_param[:page])
   rescue NoMethodError
     redirect_to(root_path, alert: "Empty field!")
   end
