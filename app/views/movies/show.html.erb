@@ -1,20 +1,13 @@
 <h1>Movies</h1>
-<table class="table">
-  <thead class="thead-dark">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Category</th>
-  </tr>
-  </thead>
-  <tbody>
-  <tr>
-    <td><%= @movie.title %></td>
-    <td><%= @movie.description %></td>
-    <td><%= @movie.category.name %></td>
-  </tr>
-  </tbody>
-</table>
-<br>
-
-<%= link_to "Add Movie", new_movie_path %>
+  <br />
+  <div style="font-size:25px;"><%= link_to "#{@movie.title}", movie_path(@movie.id) %></div>
+  <div class="wrapper">
+    <div class="box a">
+      <br />
+      <%= @movie.description %>
+      <br /><br />
+      <div style="font-size:25px;">Category: <%= @movie.category.try(:name) %></div> <br />
+      Rating: <%= @movie.rating %>/10
+    </div>
+  </div><br /><br />
+<div style="font-size:25px;"><%= link_to "Add Movie", new_movie_path %></div>

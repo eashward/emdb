@@ -1,27 +1,17 @@
 <h1>Movies</h1>
 <%= paginate @movies %>
-<br />
-<table class="table">
-  <thead class="thead-dark">
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Category</th>
-    <th>Rating</th>
-
-  </tr>
-  </thead>
-  <tbody>
-  <% @movies.each do |movie| %>
-    <tr>
-      <td><%= link_to "#{movie.title}", movie_path(movie.id) %></td>
-      <td><%= movie.description %></td>
-      <td><%= movie.category.try(:name) %></td>
-      <td><%= movie.rating %></td>
-
-    </tr>
-  <% end %>
-  </tbody>
-</table>
-<div>
-</div>
+<% @movies.each do |movie| %>
+  <br/>
+  <div style="font-size:25px;"><%= link_to "#{movie.title}", movie_path(movie.id) %></div>
+  <div class="row">
+    <div class="col-4">
+      <br/> <div style="font-size:25px;">Category: <%= movie.category.try(:name) %></div><br/>
+      Rating: <%= movie.rating %>/10 <br/><br/>
+    </div>
+    <div class="col-8">
+    <div class="wrapper">
+        <div class="box a"><%= movie.description %></div>
+      </div>
+    </div>
+  </div>
+<% end %>

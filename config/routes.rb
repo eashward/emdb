@@ -6,6 +6,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
   resources :movies
+  resources :ratings, only: [:create]
   get '/search' => 'movies#search', :as => 'search_movie'
 
 end
