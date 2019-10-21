@@ -20,6 +20,6 @@ class Movie < ApplicationRecord
   end
 
   def self.search(str, page)
-    all.where('LOWER(title) LIKE ?', "%#{str.downcase}%").page page
+    all.joins(:category).order("categories.name asc").where('LOWER(title) LIKE ?', "%#{str.downcase}%").page page
   end
 end
