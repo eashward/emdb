@@ -1,17 +1,40 @@
 <h1>Movies</h1>
 <%= paginate @movies %>
+<br/><br/><br/><br/><br/>
 <% @movies.each do |movie| %>
-  <br/>
-  <div style="font-size:25px;"><%= link_to "#{movie.title}", movie_path(movie.id) %></div>
-  <div class="row">
-    <div class="col-4">
-      <br/> <div style="font-size:25px;">Category: <%= movie.category.try(:name) %></div><br/>
-      Rating: <%= movie.rating %>/10 <br/><br/>
-    </div>
-    <div class="col-8">
-    <div class="wrapper">
-        <div class="box a"><%= movie.description %></div>
+  <div class="container">
+    <div class="row flex-column-reverse flex-md-row">
+      <div class="row">
+        <div class="col-md-5">
+          <div class="card-body">
+            <h1 class="card-title"><%= link_to "#{movie.title}", movie_path(movie.id) %></h1>
+            <!--          rating categiry-->
+            <div class="container">
+              <div class="row">
+                <div class="col-4 metadata">
+                  <i class="fa fa-star" aria-hidden="false"></i>
+                  <p><%= movie.rating %>/10</p>
+                </div>
+                <div class="col-8 metadata"><%= movie.category.try(:name) %></div>
+              </div>
+            </div>
+            <!--          description-->
+            <p class="card-text">
+            <div class="box a"><%= movie.description.truncate(100) %></p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-5">
+        <div class="card">
+          <div class="card-header">
+            <img class="card-img" src="https://image.tmdb.org/t/p/w500/nBNZadXqJSdt05SHLqgT0HuC5Gm.jpg" alt="Card image">
+          </div>
+
+        </div>
       </div>
     </div>
+
+  </div>
   </div>
 <% end %>

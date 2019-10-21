@@ -44,6 +44,6 @@ class MoviesController < ApplicationController
   end
 
   def whitelisted_params
-    params.require(:movie).permit(:title, :description, :rating, :category_id)
+    # params.require(:movie).permit(:title, :description, :rating, :category_id)
   end
 end
